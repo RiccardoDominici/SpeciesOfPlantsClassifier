@@ -25,7 +25,7 @@ We also experimented with various types of data normalization: first we simply t
 We started to define our model by recycling the code seen during the various labs sessions, in particular we tried to recreate what was done in the third lab: an image recognition CNN.
 So we proceeded by defining the function “***build\_model()”*** similarly to the lab3, which follows this structure: several convolution layers, each one with an exponential number of filters (32-64-128-...) followed by a max pooling operation with a size of (2-2), then a flattering layer and several dense layers to execute the classification, with a dropout setted to 0.3 to prevent overfitting, and finally an output layer using the softmax activation function.
 
-![](img/002.jpeg)
+![](img/002.jpg)
 
 
 The first change was to replace the *maxPoollingLayers* with *averagePoolingLayers,* because we thought that shades of green were important to distinguish for our
@@ -36,7 +36,7 @@ purposes, and the max pooling function could be a problem in this regard. We the
 
 In order to better understand how the parameters were performing inside our model we decided to visualize our results thanks to “*matplotlib.pyplot”* library, in particular the correlation between our training loss and the validation loss both in the Binary Crossentropy and in the Accuracy score.
 
-![](img/003.jpeg)
+![](img/003.jpg)
 
 Furthermore, in order to understand which kind of species we were categorizing better we decided to plot, as seen during the theoretical lectures, the confusion matrix over “True Labels” and “Predicted Labels”, indicating whether a specific species was correctly categorized or miss-categorized.
 
@@ -53,9 +53,8 @@ Immediately we realized that the data set was too small to achieve high accuracy
 - Fill\_mode = ‘reflect’ 
 - Brightness\_range = [0.2, 1.0] 
 
-![](img/004.png "Original")
 
-![](img/005.png "Augmented")
+![](img/005.jpg)
 
 
 
@@ -66,7 +65,7 @@ This set of parameters slightly improved our model, but to boost it even further
 
 Even though the custom model approach gave us good results we still decided to try to improve it by applying Transfer Learning and then Fine Tuning. Following what we have seen during the lab lecture, especially during the lab4 *“Transfer Learning and Fine Tuning”,* we imported some pre-trained models and tested them out over our FC part of the model. We started out with VGG19, trained on images from imagenet, that has a total of 21 layers made up from Convolutional Layers stacked on top of each other to increase the number of parameters so that more features could be extracted from each image, each one of those layers followed by a max pooling layer, then followed by another set of convolutional layers and so on to create a complete CNN. In particular we connected VGG19 to a GlobalAveragePooling layer followed by two Dense layers, interleaved by two Dropout layers setted to 0.3.
 
-![](img/007.jpeg)
+![](img/007.jpg)
 
 This model gave us some discrete results but not optimal, so we changed to VGG16 that has a total of 18 layers and a similar structure to VGG19 but with a decreased number of layers stacked on top of each other. This model gave us a much better result than the previous one, so we decided to proceed on using VGG16 and moved on with Fine Tuning, in the hope that it could potentially create meaningful improvements on the accuracy score, by incrementally adapting the pretrained features to new data and allowing us also to train the Fully Connected parameters. After the first training we decided to unfreeze a part of the layers so that their weights could adapt over our dataset. We experimented on different numbers of  freezed layers and we observed that we were having the best results by freezing the first 6 to 10 layers.
 
