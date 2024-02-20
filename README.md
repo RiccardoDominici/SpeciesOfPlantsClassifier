@@ -6,7 +6,7 @@ For the year 2022, the first challenge of the course of Artificial Neural Networ
 
 2. ***Data description***
 
-In order to train our model we were given a dataset by the professors containing 3542 photos of plants, divided in 8 subfolders, one for each of the species that we needed to recognize, each one of those photos with a dimension of 96x96x3.
+In order to train our model, we were given a dataset by the professors containing 3542 photos of plants, divided in 8 subfolders, one for each of the species that we needed to recognize, each one of those photos with a dimension of 96x96x3.
 
 3. ***Setting the Model Metadata***
 
